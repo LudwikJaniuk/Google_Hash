@@ -1,4 +1,7 @@
 import java.awt.Point;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -8,7 +11,7 @@ import java.util.Scanner;
 public class Main {
 	static Scanner scanner;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
 
 		// rows x columns
 		Point dims = parsePoint(readLines(1)[0]);
@@ -21,11 +24,14 @@ public class Main {
 		
 		List<Command> commands = commandsToPaint(picture);
 		
+		PrintWriter writer = new PrintWriter("the-file-name.txt", "UTF-8");
+		
 		StringBuilder stringCommands = new StringBuilder();
 		for (Command c : commands) {
-			stringCommands.append(c.toString());
-			stringCommands.append("\n");
+			writer.println(c.toString());
 		}
+		
+		writer.close();
 		
 		System.out.println(stringCommands.toString());
 
