@@ -26,14 +26,12 @@ public class Main {
 		
 		PrintWriter writer = new PrintWriter("the-file-name.txt", "UTF-8");
 		
-		StringBuilder stringCommands = new StringBuilder();
+		writer.println(commands.size());
 		for (Command c : commands) {
 			writer.println(c.toString());
 		}
 		
 		writer.close();
-		
-		System.out.println(stringCommands.toString());
 
 		scanner.close();
 	}
